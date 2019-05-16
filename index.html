@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+</head>
+
+
+<body>
+    <div id = "container">
+        <header>
+        <h1>Psychic Game</h1>
+        </header>
+
+
+        <h3>Guess the letter I'm thinking of!</h2>
+        <h4>Wins: <span id = "wins"></span></h4>
+        <h4>Losses: <span id = "losses"></span></h4>
+        <h4>Guesses Left: <span id = "guessNumb"></span></h4>
+        <h4>Guesses so far: <span id = "guessList"></span></h4>
+
+    </div>
+    
+
+
+    <script type= "text/javascript">
+
+    
+
+    //declaring varables
+    var wins = $("#wins");
+    var losses = $("#losses");
+    var guessesLeft = $("#guessNumb");
+    var guessList = $("#guessList");
+    var guessNumb = 6;
+    var lossNumb = 0;
+    var winNumb = 0;
+
+    
+
+    //letter array
+    var alph = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    
+    
+
+    
+    $(guessesLeft).html(guessNumb);
+    var computerGuess = alph[Math.floor(Math.random() * alph.length)];
+    console.log(computerGuess);
+    
+   
+    $(document).keyup(function(event){
+        
+    var userGuess = event.key;
+    if (userGuess == computerGuess){
+        winNumb ++;
+        console.log(winNumb);
+        $(wins).html(winNumb);
+        computerGuess = alph[Math.floor(Math.random() * alph.length)];
+        guessNumb = 6;
+        guessesLeft.html(guessNumb);
+        
+        guessList.html("")
+    } 
+     if (alph.includes(userGuess) && guessNumb > -1){
+        
+        $(guessList).append(" " + userGuess);
+        console.log(guessNumb);
+        guessNumb --;
+        (guessesLeft).html(guessNumb);
+        
+       
+
+    } 
+    
+
+        
+    
+    if(guessNumb == 0){
+        lossNumb ++;
+        $(losses).html(lossNumb);
+        guessNumb = 6;
+        (guessesLeft).html(guessNumb);
+
+        guessList.html("")
+        computerGuess = alph[Math.floor(Math.random() * alph.length)];
+    }
+    });
+    
+
+
+    
+    
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
