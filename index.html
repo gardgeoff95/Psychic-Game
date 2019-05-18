@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    
     <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
 </head>
 
@@ -35,10 +34,12 @@
     
 
     //declaring varables
-    var wins = $("#wins");
-    var losses = $("#losses");
-    var guessesLeft = $("#guessNumb");
-    var guessList = $("#guessList");
+    var wins = document.getElementById("wins");
+    var losses = document.getElementById("losses");
+   
+    var guessesLeft = document.getElementById("guessNumb");
+
+    var guessList = document.getElementById("guessList");
     var guessNumb = 6;
     var lossNumb = 0;
     var winNumb = 0;
@@ -51,30 +52,30 @@
     
 
     
-    $(guessesLeft).html(guessNumb);
+    guessesLeft.innerHTML = guessNumb;
     var computerGuess = alph[Math.floor(Math.random() * alph.length)];
     console.log(computerGuess);
     
    
-    $(document).keyup(function(event){
+    document.onkeyup = function(event){
         
     var userGuess = event.key;
     if (userGuess == computerGuess){
         winNumb ++;
         console.log(winNumb);
-        $(wins).html(winNumb);
+        wins.innerHTML = winNumb;
         computerGuess = alph[Math.floor(Math.random() * alph.length)];
         guessNumb = 6;
-        guessesLeft.html(guessNumb);
+        guessesLeft.innerHTML = guessNumb;
         
-        guessList.html("")
+        guessList.innerHTML = ("")
     } 
      if (alph.includes(userGuess) && guessNumb > -1){
         
-        $(guessList).append(" " + userGuess);
+        guessList.innerHTML += (" " + userGuess);
         console.log(guessNumb);
         guessNumb --;
-        (guessesLeft).html(guessNumb);
+        guessesLeft.innerHTML= (guessNumb);
         
        
 
@@ -85,14 +86,14 @@
     
     if(guessNumb == 0){
         lossNumb ++;
-        $(losses).html(lossNumb);
+        (losses).innerHTML = (lossNumb);
         guessNumb = 6;
-        (guessesLeft).html(guessNumb);
+        (guessesLeft).innerHTML = (guessNumb);
 
-        guessList.html("")
+        guessList.innerHTML = ("");
         computerGuess = alph[Math.floor(Math.random() * alph.length)];
     }
-    });
+    };
     
 
 
